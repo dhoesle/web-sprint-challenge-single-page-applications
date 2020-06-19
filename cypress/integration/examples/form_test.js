@@ -1,6 +1,6 @@
 describe('Inputs and Submit button', () => {
     it('can navigate to the site', () => {
-        cy.visit('http://localhost:3000')
+        cy.visit('http://localhost:3000/pizza')
         cy.url().should('include', 'localhost')
     })
     it('can type a text for a new name', () => {
