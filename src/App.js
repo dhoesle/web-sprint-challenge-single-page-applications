@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import {  Route, Link } from 'react-router-dom'
 import Form from './Form'
 import axios from "axios";
+
 import { v4 as uuid } from "uuid";
+import { object } from 'yup';
 
 
 
@@ -74,11 +76,15 @@ const App = () => {
       <h1>Lambda Eats</h1>
       <div className="home-button">
         <Route path='/'>
-          <Link to='/pizza'>OrderNow</Link>
-        </Route>
-        <Route path='/'>
           <Link to='/'>Home</Link>
         </Route>
+      </div>
+
+      <div className='order-button'>
+        <Route path='/'>
+          <Link to='/pizza'>OrderNow</Link>
+        </Route>
+      </div>
 
         <Route path='/pizza'>
           <Form
@@ -89,28 +95,24 @@ const App = () => {
           />
         </Route>
         <span style={{ color: "red" }}>{error}</span>
-
         <h4>Pizzas:</h4>
-        {pizzas.map((pizza) => {
-          const  toppings = pizzas.toppings
+          {pizzas.map((pizza) => {
+          
+            console.log("App -> pizzas", pizzas)
+            console.log("App -> pizza", pizza)
 
-          return (
-            <ul>
-              <li>Name: {pizza.name}</li>
-              <li>Size: {pizza.size}</li>
-              <li>Toppings:
-                <ul>
-                  <li>{toppings}</li>
-                  
-                  
-                </ul>
-              </li>
-              <li>Special Instructions: {pizza.special}</li>
+            return (
+              <ul>
+                <li>Name: {pizza.name}</li>
+                <li>Size: {pizza.size}</li>
+                <li>Special Instructions: {pizza.special}</li>
+                <li>{JSON.stringify(pizza.toppings)}</li>
 
-            </ul>
+              </ul>
           );
-        })}
-      </div>
+          })}
+          
+
     </div>
   );
 
