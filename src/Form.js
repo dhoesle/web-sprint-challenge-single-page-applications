@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css';
 
 export default function Form(props) {
-    const { values, onInputChange, onSubmit, onCheckboxChange } = props;
+    const { values, onInputChange, onSubmit, onCheckboxChange, errors } = props;
     return (
         <form className="form-container" onSubmit={onSubmit}>
           <div className="form-group inputs">
@@ -85,6 +85,7 @@ export default function Form(props) {
             <h2>Order Pizza</h2>
             <button>submit</button>
           </div>
+ 
         </form>
       );
 }

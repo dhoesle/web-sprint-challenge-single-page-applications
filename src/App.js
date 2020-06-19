@@ -45,7 +45,7 @@ const App = () => {
   const onSubmit = (evt) => {
     evt.preventDefault();
     if (!formValues.name || !formValues.size) {
-      setError("MUST FILL OUT INFO");
+      setError("MUST FILL OUT NAME AND SIZE");
       return;
     }
 
@@ -65,16 +65,22 @@ const App = () => {
 
     setFormValues(initialFormValues);
   };
-  
+  const  toppings = pizzas.toppings
+  console.log("App -> toppings", toppings)
+
+ 
   return (
     <div className='container'>
       <h1>Lambda Eats</h1>
       <div className="home-button">
         <Route path='/'>
+          <Link to='/pizza'>OrderNow</Link>
+        </Route>
+        <Route path='/'>
           <Link to='/'>Home</Link>
         </Route>
 
-        <Route>
+        <Route path='/pizza'>
           <Form
             values={formValues}
             onInputChange={onInputChange}
@@ -82,23 +88,25 @@ const App = () => {
             onCheckboxChange={onCheckboxChange}
           />
         </Route>
+        <span style={{ color: "red" }}>{error}</span>
+
         <h4>Pizzas:</h4>
         {pizzas.map((pizza) => {
+          const  toppings = pizzas.toppings
+
           return (
             <ul>
               <li>Name: {pizza.name}</li>
               <li>Size: {pizza.size}</li>
               <li>Toppings:
                 <ul>
-                  <li>{pizza.toppings.cheese.value}</li>
-                  <li>{pizza.toppings.pepperoni}</li>
-                  <li>{pizza.toppings.veggie}</li>
-                  <li>{pizza.toppings.vegan}</li>
+                  <li>{toppings}</li>
+                  
+                  
                 </ul>
               </li>
               <li>Special Instructions: {pizza.special}</li>
-{              console.log("App -> pizza.toppings", pizza.toppings)
-}
+
             </ul>
           );
         })}
